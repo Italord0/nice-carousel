@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.italo.nice_carousel.databinding.NiceCarouselBinding
 
 class NiceCarousel @JvmOverloads constructor(
@@ -23,6 +24,18 @@ class NiceCarousel @JvmOverloads constructor(
     }
 
     private fun setLayout() {
+
+    }
+
+    fun addFragment(fragment: Fragment) {
+
+    }
+
+    fun enableIndicator(enabled: Boolean) {
+
+    }
+
+    fun setSlideDuration(duration: Int) {
 
     }
 

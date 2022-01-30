@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.38645833333333335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12083333333333333" />
+        <entry key="app/src/main/res/layout/fragment_1.xml" value="0.140625" />
+        <entry key="app/src/main/res/layout/fragment_2.xml" value="0.140625" />
+        <entry key="app/src/main/res/layout/fragment_3.xml" value="0.140625" />
         <entry key="nice-carousel/src/main/res/layout/nice_carousel.xml" value="0.359375" />
       </map>
     </option>

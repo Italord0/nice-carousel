@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayoutMediator
 import com.italo.nice_carousel.databinding.NiceCarouselBinding
 
 class NiceCarousel @JvmOverloads constructor(
@@ -22,12 +23,10 @@ class NiceCarousel @JvmOverloads constructor(
 
     private lateinit var carouselAdapter: CarouselAdapter
 
-    init {
-        setLayout()
-    }
-
     private fun setLayout() {
-
+        with(binding){
+            TabLayoutMediator(niceCarouselTabLayout,niceCarouselViewPager) { _,_ -> }.attach()
+        }
     }
 
     fun setActivity(appCompatActivity: AppCompatActivity){
@@ -37,14 +36,18 @@ class NiceCarousel @JvmOverloads constructor(
 
     fun addFragment(fragment: Fragment) {
         carouselAdapter.addFragment(fragment)
+        setLayout()
     }
 
     fun addFragment(fragments : ArrayList<Fragment>){
         carouselAdapter.addFragment(fragments)
+        setLayout()
     }
 
     fun enableIndicator(enabled: Boolean) {
-
+        if (enabled.not()) {
+            binding.niceCarouselTabLayout.visibility = GONE
+        }
     }
 
     fun setSlideDuration(duration: Int) {

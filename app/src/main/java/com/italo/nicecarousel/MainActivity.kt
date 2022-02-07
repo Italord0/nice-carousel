@@ -9,17 +9,20 @@ import com.italo.nicecarousel.fragments.Fragment3
 
 class MainActivity : AppCompatActivity() {
 
-    private var binding : ActivityMainBinding? = null
+    private var _binding : ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        binding?.carousel?.setActivity(this)
-        binding?.carousel?.addFragment(Fragment1())
-        binding?.carousel?.addFragment(Fragment2())
-        binding?.carousel?.addFragment(Fragment3())
+        with(binding) {
+            carousel.setActivity(this@MainActivity)
+            carousel.addFragment(Fragment1())
+            carousel.addFragment(Fragment2())
+            carousel.addFragment(Fragment3())
+        }
 
     }
 }

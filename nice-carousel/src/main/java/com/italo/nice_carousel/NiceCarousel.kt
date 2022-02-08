@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.italo.nice_carousel.databinding.NiceCarouselBinding
+import kotlin.concurrent.fixedRateTimer
 
 class NiceCarousel @JvmOverloads constructor(
     context: Context,
@@ -22,15 +23,17 @@ class NiceCarousel @JvmOverloads constructor(
     }
 
     private lateinit var carouselAdapter: CarouselAdapter
+    private lateinit var activity: AppCompatActivity
 
     private fun setLayout() {
-        with(binding){
-            TabLayoutMediator(niceCarouselTabLayout,niceCarouselViewPager) { _,_ -> }.attach()
+        with(binding) {
+            TabLayoutMediator(niceCarouselTabLayout, niceCarouselViewPager) { _, _ -> }.attach()
         }
     }
 
-    fun setActivity(appCompatActivity: AppCompatActivity){
-        carouselAdapter = CarouselAdapter(appCompatActivity)
+    fun setActivity(appCompatActivity: AppCompatActivity) {
+        activity = appCompatActivity
+        carouselAdapter = CarouselAdapter(activity)
         binding.niceCarouselViewPager.adapter = carouselAdapter
     }
 
@@ -39,7 +42,7 @@ class NiceCarousel @JvmOverloads constructor(
         setLayout()
     }
 
-    fun addFragment(fragments : ArrayList<Fragment>){
+    fun addFragment(fragments: ArrayList<Fragment>) {
         carouselAdapter.addFragment(fragments)
         setLayout()
     }
@@ -50,8 +53,28 @@ class NiceCarousel @JvmOverloads constructor(
         }
     }
 
-    fun setSlideDuration(duration: Int) {
+    fun setSlideDuration(duration: Long) {
+        fixedRateTimer(
+            name = FIXED_RATE_TIMER_NAME,
+            daemon = false, initialDelay = duration * 1000, period = duration * 1000
+        ) {
+            animateViewPager()
+        }
+    }
 
+    private fun animateViewPager() {
+        with(binding) {
+            val currentIndex = niceCarouselViewPager.currentItem
+            val itemCount = carouselAdapter.itemCount
+            activity.runOnUiThread {
+                when (itemCount > (currentIndex.plus(1))) {
+                    true -> niceCarouselViewPager.setCurrentItem(currentIndex.plus(1), true)
+                    else -> niceCarouselViewPager.setCurrentItem(0, true)
+                }
+            }
+        }
     }
 
 }
+
+private const val FIXED_RATE_TIMER_NAME = "carouselTimer"

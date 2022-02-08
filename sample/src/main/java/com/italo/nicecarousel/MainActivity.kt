@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             carousel.addFragment(Fragment1())
             carousel.addFragment(Fragment2())
             carousel.addFragment(Fragment3())
+            carousel.setSlideDuration(3)
         }
-
     }
 }

@@ -12,8 +12,9 @@
         <entry key="nice-carousel/src/main/res/drawable/default_indicator_selected.xml" value="0.25677083333333334" />
         <entry key="nice-carousel/src/main/res/drawable/default_indicator_unselected.xml" value="0.25677083333333334" />
         <entry key="nice-carousel/src/main/res/drawable/default_page_indicator_selected.xml" value="0.25677083333333334" />
-        <entry key="nice-carousel/src/main/res/layout/fragment_image.xml" value="0.240625" />
+        <entry key="nice-carousel/src/main/res/layout/fragment_image.xml" value="0.20052083333333334" />
         <entry key="nice-carousel/src/main/res/layout/nice_carousel.xml" value="0.25" />
+        <entry key="sample/src/main/res/layout/activity_main.xml" value="0.359375" />
       </map>
     </option>
   </component>

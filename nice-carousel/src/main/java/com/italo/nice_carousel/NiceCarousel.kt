@@ -3,6 +3,7 @@ package com.italo.nice_carousel
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -47,8 +48,13 @@ class NiceCarousel @JvmOverloads constructor(
         setLayout()
     }
 
-    fun addImageFromUrl(imageUrl : String){
+    fun addImage(imageUrl: String) {
         carouselAdapter.addFragment(ImageFragment(imageUrl))
+        setLayout()
+    }
+
+    fun addImage(@DrawableRes drawable: Int) {
+        carouselAdapter.addFragment(ImageFragment(drawable))
         setLayout()
     }
 

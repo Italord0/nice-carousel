@@ -47,6 +47,11 @@ class NiceCarousel @JvmOverloads constructor(
         setLayout()
     }
 
+    fun addImageFromUrl(imageUrl : String){
+        carouselAdapter.addFragment(ImageFragment(imageUrl))
+        setLayout()
+    }
+
     fun enableIndicator(enabled: Boolean) {
         if (enabled.not()) {
             binding.niceCarouselTabLayout.visibility = GONE
